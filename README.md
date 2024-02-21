@@ -8,31 +8,38 @@
     </thead>
     <tbody>
     <tr>
-        <td>Skeleton package</td>
+        <td>AWS Lex package</td>
         <td>January 3, 2024</td>
-        <td>Detailed description of the API of the Skeleton package.</td>
+        <td>Detailed description of the API of the AWS Lex package.</td>
     </tr>
     </tbody>
 </table>
 
 # Overview
 
+The AWS Lex Package offers a set of services that allow developers to create conversational interfaces for applications using voice and text. Here are some highlights of the Package:
+
+* Advanced chatbot building: The AWS Lex Package enables developers to build sophisticated chatbots with natural language understanding (NLU) and automatic speech recognition (ASR) functionalities, similar to the technology used in Amazon Alexa.
+* Conversation flow management: With the AWS Lex Package, developers can dynamically manage conversation flow and adjust chatbot responses based on interaction context.
+
+In summary, the AWS Lex Package offers a simple and cost-effective way for developers to integrate chatbot capabilities into their applications, enabling them to create more interactive and natural user experiences.
+
 # Javascript API
 
-The Javascript API of the skeleton package has two pieces:
+The Javascript API of the awslex package has two pieces:
 
 - **HTTP requests**
 - **Flow steps**
 
 ## HTTP requests
-You can make `GET`,`PUT`,`PATCH`,`DELETE` requests to the [skeleton API](API_URL_HERE) like this:
+You can make `GET`,`PUT`,`PATCH`,`DELETE` requests to the [awslex API](https://docs.aws.amazon.com/lex/latest/dg/API_Reference.html) like this:
 ```javascript
-var response = pkg.skeleton.api.get('/path3')
-var response = pkg.skeleton.api.put('/path1/:testPath', body)
-var response = pkg.skeleton.api.put('/path1/:testPath')
-var response = pkg.skeleton.api.patch('/path2?param2=' + httpOptions.query.param2 + '&param3=' + httpOptions.query.param3 + '', body)
-var response = pkg.skeleton.api.patch('/path2?param2=' + httpOptions.query.param2 + '&param3=' + httpOptions.query.param3 + '')
-var response = pkg.skeleton.api.delete('/path4')
+var response = pkg.awslex.api.awsLex.post('/imports', body)
+var response = pkg.awslex.api.awsLex.post('/imports')
+var response = pkg.awslex.api.awsLex.delete('/intents/:name')
+var response = pkg.awslex.api.awsLex.get('/bots')
+var response = pkg.awslex.api.awsLex.put('/bots/:name/versions/$LATEST', body)
+var response = pkg.awslex.api.awsLex.put('/bots/:name/versions/$LATEST')
 ```
 
 Please take a look at the documentation of the [HTTP service](https://github.com/slingr-stack/http-service)
@@ -205,7 +212,6 @@ For more information about how shortcuts or flow steps work, and how they are ge
 
 ## Dependencies
 * HTTP Service (v1.3.7)
-* Oauth Package (v1.0.19) // TODO review and remove if its needed
 
 ## About SLINGR
 
