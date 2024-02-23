@@ -243,7 +243,6 @@ let awsLex = function (options) {
     options = options || {};
     options= setApiUri(options);
     options= setAuthorization(options);
-    options= setRequestHeaders(options);
     return options;
 }
 
@@ -255,14 +254,6 @@ function setApiUri(options) {
     let url = options.path || "";
     options.url = "https://models.lex."+config.get("region")+".amazonaws.com" + url;
     sys.logs.debug('[awsLex] Set url: ' + options.path + "->" + options.url);
-    return options;
-}
-
-function setRequestHeaders(options) {
-    let headers = options.headers || {};
-    headers = mergeJSON(headers, {"Content-Type": "application/json"});
-
-    options.headers = headers;
     return options;
 }
 

@@ -58,7 +58,6 @@ step.apiCallAwsLex = function (inputs) {
     }
 
     options = setApiUri(options);
-    options = setRequestHeaders(options);
     options = setAuthorization(options);
 
     switch (inputsLogic.method.toLowerCase()) {
@@ -126,14 +125,6 @@ function setApiUri(options) {
     let url = options.path || "";
     options.url = "https://models.lex." + config.get("region") + ".amazonaws.com" + url;
     sys.logs.debug('[awsLex] Set url: ' + options.path + "->" + options.url);
-    return options;
-}
-
-function setRequestHeaders(options) {
-    let headers = options.headers || {};
-    headers = mergeJSON(headers, {"Content-Type": "application/json"});
-
-    options.headers = headers;
     return options;
 }
 
