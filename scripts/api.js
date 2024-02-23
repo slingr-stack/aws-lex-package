@@ -253,7 +253,7 @@ let awsLex = function (options) {
 
 function setApiUri(options) {
     let url = options.path || "";
-    options.url = API_URL + url;
+    options.url = "https://models.lex."+config.get("region")+".amazonaws.com" + url;
     sys.logs.debug('[awsLex] Set url: ' + options.path + "->" + options.url);
     return options;
 }
@@ -270,32 +270,14 @@ function setAuthorization(options) {
     sys.logs.debug('[awsLex] Setting header token oauth');
     let authorization = options.authorization || {};
     authorization = mergeJSON(authorization, {
-        type: "oauth2",
-        accessToken: sys.storage.get(config.get("oauth").id + ' - access_token', {decrypt:true}),
-        headerPrefix: "token"
+        type: "awsSignature",
+        accessKeyID: config.get("accessKeyID"),
+        secretAccessKey: config.get("secretAccessKey"),
+        region:config.get("region"),
+        serviceName: "lex"
     });
     options.authorization = authorization;
     return options;
-}
-
-function methodOnInit(){
-    let refreshTokenResponse = httpService.post({
-        url: "https://example.com/",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: {"grant_type":"refresh_token","refresh_token" : config.get("refreshToken")},
-        authorization: {
-            type: "basic",
-            username: config.get("clientId"),
-            password: config.get("clientSecret")
-        }
-    });
-    sys.logs.debug('[awsLex] Refresh token response: ' + JSON.stringify(refreshTokenResponse));
-    // If you need to set a variable at application level, you can do it with _config.set (on redeploy its cleared)
-    _config.set("accessToken", refreshTokenResponse.access_token);
-    _config.set("refreshToken", refreshTokenResponse.refresh_token);
 }
 
 function mergeJSON (json1, json2) {
@@ -308,21 +290,4 @@ function mergeJSON (json1, json2) {
         if(json2.hasOwnProperty(key)) result[key] = json2[key];
     }
     return result;
-}
-
-/****************************************************
- Extra helper
- ****************************************************/
-
-exports.callbackTest = function () {
-    log('test function arrived UI');
-    sys.ui.sendMessage({
-        scope: 'uiService:testUiService.testUiService',
-        name: 'callbackTest',
-        callbacks: {
-            callbackTest: function (originalMessage, callbackData) {
-                sys.logs.info('callbackTest');
-            }
-        }
-    });
 }

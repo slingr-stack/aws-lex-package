@@ -9,7 +9,7 @@
     <tbody>
     <tr>
         <td>AWS Lex package</td>
-        <td>January 3, 2024</td>
+        <td>February 23, 2024</td>
         <td>Detailed description of the API of the AWS Lex package.</td>
     </tr>
     </tbody>
@@ -32,14 +32,13 @@ The Javascript API of the awslex package has two pieces:
 - **Flow steps**
 
 ## HTTP requests
-You can make `GET`,`PUT`,`PATCH`,`DELETE` requests to the [awslex API](https://docs.aws.amazon.com/lex/latest/dg/API_Reference.html) like this:
+You can make `GET`,`PUT`,`POST`,`DELETE` requests to the [awslex API](https://docs.aws.amazon.com/lex/latest/dg/API_Reference.html) like this:
 ```javascript
-var response = pkg.awslex.api.awsLex.post('/imports', body)
-var response = pkg.awslex.api.awsLex.post('/imports')
-var response = pkg.awslex.api.awsLex.delete('/intents/:name')
-var response = pkg.awslex.api.awsLex.get('/bots')
-var response = pkg.awslex.api.awsLex.put('/bots/:name/versions/$LATEST', body)
-var response = pkg.awslex.api.awsLex.put('/bots/:name/versions/$LATEST')
+var response = pkg.awslex.api.get('/bots')
+var response = pkg.awslex.api.post('/bots/:name/versions',body)
+var response = pkg.awslex.api.delete('/bots/:name')
+var response = pkg.awslex.api.put('/bots/:name/versions/$LATEST', body)
+var response = pkg.awslex.api.put('/bots/:name/versions/$LATEST')
 ```
 
 Please take a look at the documentation of the [HTTP service](https://github.com/slingr-stack/http-service)
@@ -211,7 +210,7 @@ Generic flow step for full use of the entire package and its services.
 For more information about how shortcuts or flow steps work, and how they are generated, take a look at the [slingr-helpgen tool](https://github.com/slingr-stack/slingr-helpgen).
 
 ## Dependencies
-* HTTP Service (v1.3.7)
+* HTTP Service (v1.5.0)
 
 ## About SLINGR
 

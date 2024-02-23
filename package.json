@@ -5,13 +5,13 @@
         {
             "type": "service",
             "name": "http",
-            "version": "v1.3.7",
+            "version": "v1.5.0",
             "instanceId": "shared"
         }
     ],
     "configuration": [
         {
-            "name": "accessKey",
+            "name": "accessKeyID",
             "label": "AWS Access Key",
             "type": "text",
             "required": true
@@ -27,12 +27,6 @@
             "label": "AWS Region",
             "type": "text",
             "required": true
-        },
-        {
-            "name": "AWS_LEX_API_BASE_URL",
-            "label": "AWS Lex Api Url",
-            "type": "label",
-            "value": "https://models.lex.'+@region+'.amazonaws.com"
         }
     ],
     "events": [
